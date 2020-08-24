@@ -1,9 +1,9 @@
 package internal
 
 import (
-	"github.com/johnfercher/maroto/pkg/consts"
-	"github.com/johnfercher/maroto/pkg/props"
 	"github.com/jung-kurt/gofpdf"
+	"github.com/kccm/maroto/pkg/consts"
+	"github.com/kccm/maroto/pkg/props"
 	"strings"
 )
 

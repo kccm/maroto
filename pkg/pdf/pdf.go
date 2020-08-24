@@ -2,12 +2,12 @@ package pdf
 
 import (
 	"bytes"
-	"github.com/johnfercher/maroto/pkg/color"
+	"github.com/kccm/maroto/pkg/color"
 
-	"github.com/johnfercher/maroto/internal"
-	"github.com/johnfercher/maroto/pkg/consts"
-	"github.com/johnfercher/maroto/pkg/props"
 	"github.com/jung-kurt/gofpdf"
+	"github.com/kccm/maroto/internal"
+	"github.com/kccm/maroto/pkg/consts"
+	"github.com/kccm/maroto/pkg/props"
 )
 
 // Maroto is the principal abstraction to create a PDF document.

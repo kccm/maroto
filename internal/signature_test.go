@@ -2,9 +2,9 @@ package internal_test
 
 import (
 	"fmt"
-	"github.com/johnfercher/maroto/internal"
-	"github.com/johnfercher/maroto/internal/mocks"
-	"github.com/johnfercher/maroto/pkg/props"
+	"github.com/kccm/maroto/internal"
+	"github.com/kccm/maroto/internal/mocks"
+	"github.com/kccm/maroto/pkg/props"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
 	"testing"
