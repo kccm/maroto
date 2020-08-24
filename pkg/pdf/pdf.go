@@ -12,6 +12,7 @@ import (
 
 // Maroto is the principal abstraction to create a PDF document.
 type Maroto interface {
+	SetColNum(colNum uint)
 	// Grid System
 	Row(height float64, closure func())
 	Col(width uint, closure func())
@@ -65,6 +66,7 @@ type PdfMaroto struct {
 	rowHeight                 float64
 	xColOffset                float64
 	colWidth                  float64
+	colNum                    uint
 	backgroundColor           color.Color
 	headerClosure             func()
 	footerClosure             func()
@@ -117,6 +119,7 @@ func NewMarotoCustomSize(orientation consts.Orientation, pageSize consts.PageSiz
 		TableListHelper: tableList,
 		pageSize:        pageSize,
 		orientation:     orientation,
+		colNum:          12,
 		calculationMode: false,
 		backgroundColor: color.NewWhite(),
 	}
@@ -138,6 +141,11 @@ func NewMarotoCustomSize(orientation consts.Orientation, pageSize consts.PageSiz
 // Shorthand when using a preset page size from consts.PageSize
 func NewMaroto(orientation consts.Orientation, pageSize consts.PageSize) Maroto {
 	return NewMarotoCustomSize(orientation, pageSize, "mm", 0, 0)
+}
+
+// SetColNum overrides default number of columns in the PDF
+func (s *PdfMaroto) SetColNum(colNum uint) {
+	s.colNum = colNum
 }
 
 // AddPage adds a new page in the PDF
@@ -319,10 +327,10 @@ func (s *PdfMaroto) Row(height float64, closure func()) {
 // components inside.
 func (s *PdfMaroto) Col(width uint, closure func()) {
 	if width == 0 {
-		width = 12
+		width = s.colNum
 	}
 
-	percent := float64(width) / float64(12)
+	percent := float64(width) / float64(s.colNum)
 
 	pageWidth, _ := s.Pdf.GetPageSize()
 	left, _, right, _ := s.Pdf.GetMargins()
